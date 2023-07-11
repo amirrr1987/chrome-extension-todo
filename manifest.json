@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "ToDo",
+    "version": "1.0",
+    "action": {
+      "default_popup": "./index.html"
+    },
+    "description": "Amir Maghami ToDo",
+    "permissions": [
+      "activeTab"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "icons": {
+        "16": "./assets/images/icon-16.png",
+        "48": "./assets/images/icon-48.png",
+        "128": "./assets/images/icon-128.png"
+      }
+  }
+  

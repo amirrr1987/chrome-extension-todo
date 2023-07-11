@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  padding: 1rem;
+  color: #414141;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 400px;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.form__input {
+  flex-basis: 100%;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #aaa;
+}
+.form__input:focus-visible {
+  outline: none;
+}
+.form__add {
+  width: 28px;
+  height: 28px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+.task {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 1rem;
+  padding-right: -1rem;
+}
+.task__item {
+  border-bottom: 1px solid #ccc;
+  padding-left: 1rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.task__item:last-child {
+  border: none;
+}
+.task__item:hover .task__remove {
+  right: 0;
+}
+.task__text {
+  flex-basis: 100%;
+}
+.task__remove {
+  width: 1.5rem;
+  height: 1.5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+  position: absolute;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+  right: -100%;
+}/*# sourceMappingURL=style.css.map */

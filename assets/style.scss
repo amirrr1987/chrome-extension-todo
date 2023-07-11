@@ -1,0 +1,90 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.app{
+    padding: 1rem;
+    color: #414141;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: 400px;
+}
+.form{
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    margin-bottom: 1rem;
+    // padding-inline: 1rem;
+    &__input{
+        flex-basis: 100%;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        border: 1px solid #aaa;
+        &:focus-visible{
+            outline: none;
+        }
+    }
+    &__add{
+        width: 28px;
+        height: 28px;
+        object-fit: cover;
+        cursor: pointer;
+    }
+}
+::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ccc; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #aaa; 
+  }
+.task{
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 1rem;
+    padding-right: -1rem;
+  
+    &__item{
+        border-bottom: 1px solid #ccc;
+        padding-left: 1rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        &:last-child{
+            border: none;
+        }
+        &:hover{
+            .task__remove{
+                right: 0;
+            }
+        }
+    }
+    &__text{
+        flex-basis: 100%;
+    }
+    &__remove{
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: cover;
+        cursor: pointer;
+        position: absolute;
+        transition-duration: 0.4s;
+        transition-timing-function: ease-in-out;
+        right: -100%;
+    }
+}
