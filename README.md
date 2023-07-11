@@ -1,53 +1,38 @@
-# Your Extension Name
+# Simple Todo Extension
 
-Your Extension Name is a browser extension that provides [describe briefly what your extension does].
+This is a simple browser extension that allows you to manage a todo list.
 
 ## Features
 
-- Feature 1: [Describe the first feature of your extension]
-- Feature 2: [Describe the second feature of your extension]
-- Feature 3: [Describe the third feature of your extension]
+- Add tasks to the todo list.
+- Mark tasks as completed.
+- Remove tasks from the todo list.
 
 ## Installation
 
-To install the extension, follow these steps:
-
-1. Clone the repository: `git clone https://github.com/your-username/your-extension.git`
+1. Clone or download this repository.
 2. Open your browser's extension management page.
-3. Enable developer mode.
-4. Click on "Load unpacked extension" and select the cloned repository folder.
+3. Enable Developer Mode.
+4. Click on "Load Unpacked" or "Load Extension" button.
+5. Select the cloned/downloaded folder.
 
 ## Usage
 
-To use the extension, follow these steps:
+- Click on the extension icon in your browser's toolbar to open the todo list.
+- Enter a task in the input field and click "Add" or press Enter to add it to the list.
+- Click on the checkbox next to a task to mark it as completed.
+- Click on the "X" button next to a task to remove it from the list.
 
-1. Open [mention where the extension can be used].
-2. [Describe how to activate and interact with the extension].
-3. [Provide any additional usage instructions].
+## Technologies Used
 
-## Contributing
+- HTML
+- CSS
+- JavaScript
 
-Contributions are welcome! If you would like to contribute to the project, follow these steps:
+## Contribution
 
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature/your-feature`.
-3. Make your changes and commit them: `git commit -m 'Add your feature'`.
-4. Push to the branch: `git push origin feature/your-feature`.
-5. Submit a pull request.
+Contributions are welcome! If you have any suggestions or improvements, feel free to open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under the [License Name]. See the [LICENSE](LICENSE) file for more details.
-
-## Acknowledgements
-
-- [Mention any acknowledgements or resources you found helpful during the development of your extension].
-
-## Contact
-
-For any questions or suggestions, feel free to reach out to [your-email@example.com].
-
----
-
-**Note**: This README template is just a starting point. Feel free to modify and customize it based on your extension's specific needs.
-
+This project is licensed under the [MIT License](LICENSE).
