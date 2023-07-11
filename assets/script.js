@@ -1,67 +1,70 @@
-const toDoHandler = async () => {
-    const taskInput = document.querySelector(".form__input");
-    const addButton = document.querySelector(".form__add");
-    const taskList = document.querySelector(".task");
+const taskInput = document.querySelector(".form__input");
+const addButton = document.querySelector(".form__add");
+const taskList = document.querySelector(".task");
 
-    const taskItemGenerator = () => {
-        const taskItem = document.createElement("li");
-        taskItem.classList.add('task__item');
-        return taskItem
-    }
-    const taskTextGenerator = () => {
-        const taskText = document.createElement("span");
-        taskText.classList.add('task__text');
-        return taskText
-    }
-    const taskRemoveGenerator = () => {
-        const taskRemove = document.createElement("img");
-        taskRemove.src = './assets/images/checked.png';
-        taskRemove.classList.add('task__remove');
-        return taskRemove
-    }
-
+const removeTaskHandler = (index) => {
+    event.preventDefault();
     const data = localStorage.getItem('taskListStorage');
-    const getStorage = JSON.parse(data) || [];
+    const taskStorage = JSON.parse(data) || [];
+    taskStorage.splice(index,1)
+    localStorage.setItem('taskListStorage', JSON.stringify(taskStorage));
+    taskInput.value = "";
+    taskInput.focus();
+    setStorage();
+}
 
-    getStorage.forEach((element, index) => {
+const taskItemGenerator = () => {
+    const taskItem = document.createElement("li");
+    taskItem.classList.add('task__item');
+    return taskItem;
+}
 
-        const taskItem =  taskItemGenerator()
-        const taskText = taskTextGenerator()
-        const taskRemove = taskRemoveGenerator()
+const taskTextGenerator = () => {
+    const taskText = document.createElement("span");
+    taskText.classList.add('task__text');
+    return taskText;
+}
 
-        taskText.textContent = element.label;
+const taskRemoveGenerator = (index) => {
+    const taskRemove = document.createElement("img");
+    taskRemove.src = './assets/images/checked.png';
+    taskRemove.classList.add('task__remove');
+    taskRemove.addEventListener("click", () => removeTaskHandler(index));
+    return taskRemove;
+}
+
+const setStorage = () => {
+    taskList.innerHTML = "";
+    const data = localStorage.getItem('taskListStorage');
+    const taskStorage = JSON.parse(data) || [];
+
+    taskStorage.forEach((element, index) => {
+        const taskItem = taskItemGenerator();
+        const taskText = taskTextGenerator();
+        const taskRemove = taskRemoveGenerator(index);
         taskItem.appendChild(taskText);
         taskItem.appendChild(taskRemove);
         taskList.appendChild(taskItem);
+        taskText.textContent = element.label;
     });
-    const addToList = () => {
-        const taskText = taskInput.value;
-        if (!!taskText) {
+}
 
-            const taskItem =  taskItemGenerator()
-            const taskText = taskTextGenerator()
-            const taskRemove = taskRemoveGenerator()
+const checkPressEnter = (event) => {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+        event.preventDefault();
+        const data = localStorage.getItem('taskListStorage');
+        const taskStorage = JSON.parse(data) || [];
+        taskStorage.push({ label: event.target.value, checked: false })
+        localStorage.setItem('taskListStorage', JSON.stringify(taskStorage));
+        taskInput.value = "";
+        taskInput.focus();
+        setStorage();
+    }
+};
 
-            taskItem.appendChild(taskText);
-            taskItem.appendChild(taskRemove);
-            taskList.appendChild(taskItem);
-
-            taskText.textContent = taskInput.value;
-            getStorage.push({ label: taskInput.value, checked: false });
-            localStorage.setItem('taskListStorage', JSON.stringify(getStorage));
-            taskInput.value = "";
-        }
-    };
-
-    const checkPressEnter = (event) => {
-        if (event.key === 'Enter' || event.keyCode === 13) {
-            event.preventDefault();
-            addToList();
-            taskInput.focus();
-        }
-    };
-
-    addButton.addEventListener("click", addToList);
+const toDoHandler = async () => {
+    setStorage();
+    addButton.addEventListener("click", checkPressEnter);
     taskInput.addEventListener("keydown", checkPressEnter);
 };
 
