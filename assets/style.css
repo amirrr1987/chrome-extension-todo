@@ -29,14 +29,18 @@
 .form__input:focus-visible {
   outline: none;
 }
-.form__add {
-  width: 28px;
-  height: 28px;
-  -o-object-fit: cover;
-     object-fit: cover;
+.form__btn {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
+  background-image: url("./images/plus.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -57,14 +61,14 @@
 }
 
 .task {
-  max-height: 400px;
+  max-height: 260px;
   overflow-y: auto;
   padding-right: 1rem;
-  padding-right: -1rem;
+  margin-right: -1rem;
 }
 .task__item {
+  padding-left: 0.5rem;
   border-bottom: 1px solid #ccc;
-  padding-left: 1rem;
   height: 3rem;
   display: flex;
   align-items: center;
@@ -74,11 +78,16 @@
 .task__item:last-child {
   border: none;
 }
+.task__item:hover {
+  background-color: #f1f1f1;
+}
 .task__item:hover .task__remove {
-  right: 0;
+  right: 10px;
 }
 .task__text {
   flex-basis: 100%;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 .task__remove {
   width: 1.5rem;
@@ -90,4 +99,7 @@
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
   right: -100%;
+}
+.task--complete {
+  text-decoration: line-through;
 }/*# sourceMappingURL=style.css.map */
