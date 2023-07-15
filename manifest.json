@@ -1,11 +1,11 @@
 {
     "manifest_version": 3,
-    "name": "ToDo",
+    "name": "Todo",
     "version": "1.0",
     "action": {
       "default_popup": "./index.html"
     },
-    "description": "Amir Maghami ToDo",
+    "description": "Amir Maghami Todo",
     "permissions": [
       "activeTab"
     ],

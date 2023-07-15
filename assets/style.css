@@ -74,6 +74,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 .task__item:last-child {
   border: none;
@@ -86,7 +87,7 @@
 }
 .task__text {
   flex-basis: 100%;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 400;
 }
 .task__remove {
@@ -96,10 +97,11 @@
      object-fit: cover;
   cursor: pointer;
   position: absolute;
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   right: -100%;
 }
 .task--complete {
   text-decoration: line-through;
+  color: #ccc;
 }/*# sourceMappingURL=style.css.map */

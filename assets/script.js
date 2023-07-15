@@ -2,10 +2,24 @@ const taskInput = document.querySelector(".form__input");
 const addButton = document.querySelector(".form__btn");
 const taskList = document.querySelector(".task");
 
-const removeTaskHandler = (index) => {
+const taskStorageHandler = ()=>{
     const data = localStorage.getItem('taskListStorage');
-    const taskStorage = JSON.parse(data) || [];
-    // taskStorage.splice(index, 1)
+   return JSON.parse(data) || [];
+}
+
+const taskRemoveHandler = (index) => {
+    const taskStorage = taskStorageHandler()
+    if(taskStorage[index].checked ){
+        taskStorage.splice(index, 1)
+    }
+    localStorage.setItem('taskListStorage', JSON.stringify(taskStorage));
+    taskInput.value = "";
+    taskInput.focus();
+    setStorage();
+}
+
+const taskCompleteHandler = (index) => {
+    const taskStorage = taskStorageHandler()
     taskStorage[index].checked = !taskStorage[index].checked
     localStorage.setItem('taskListStorage', JSON.stringify(taskStorage));
     taskInput.value = "";
@@ -13,9 +27,11 @@ const removeTaskHandler = (index) => {
     setStorage();
 }
 
-const taskItemGenerator = () => {
+const taskItemGenerator = (index) => {
     const taskItem = document.createElement("li");
     taskItem.classList.add('task__item');
+    // taskItem.classList.add('task__remove');
+    taskItem.addEventListener("click", () => taskCompleteHandler(index));
     return taskItem;
 }
 
@@ -25,29 +41,28 @@ const taskTextGenerator = () => {
     return taskText;
 }
 
-const taskRemoveGenerator = (index) => {
+const taskCompleteGenerator = (index) => {
     const taskRemove = document.createElement("img");
-    taskRemove.src = './assets/images/checked.png';
+    taskRemove.src = './assets/images/delete.png';
     taskRemove.classList.add('task__remove');
-    taskRemove.addEventListener("click", () => removeTaskHandler(index));
+    taskRemove.addEventListener("click", () => taskRemoveHandler(index));
     return taskRemove;
 }
 
 const setStorage = () => {
     taskList.innerHTML = "";
-    const data = localStorage.getItem('taskListStorage');
-    const taskStorage = JSON.parse(data) || [];
+    const taskStorage = taskStorageHandler()
 
     taskStorage.forEach((element, index) => {
-        const taskItem = taskItemGenerator();
+        const taskItem = taskItemGenerator(index);
         const taskText = taskTextGenerator();
-        const taskRemove = taskRemoveGenerator(index);
         taskItem.appendChild(taskText);
-        taskItem.appendChild(taskRemove);
         taskList.appendChild(taskItem);
-
+        
         taskText.textContent = element.label;
         if(element.checked){
+            const taskComplete = taskCompleteGenerator(index);
+            taskItem.appendChild(taskComplete);
             taskText.classList.add('task--complete')
         }
     });
