@@ -2,14 +2,14 @@ const taskInput = document.querySelector(".form__input");
 const addButton = document.querySelector(".form__btn");
 const taskList = document.querySelector(".task");
 
-const taskStorageHandler = ()=>{
+const taskStorageHandler = () => {
     const data = localStorage.getItem('taskListStorage');
-   return JSON.parse(data) || [];
+    return JSON.parse(data) || [];
 }
 
 const taskRemoveHandler = (index) => {
     const taskStorage = taskStorageHandler()
-    if(taskStorage[index].checked ){
+    if (taskStorage[index].checked) {
         taskStorage.splice(index, 1)
     }
     localStorage.setItem('taskListStorage', JSON.stringify(taskStorage));
@@ -20,7 +20,9 @@ const taskRemoveHandler = (index) => {
 
 const taskCompleteHandler = (index) => {
     const taskStorage = taskStorageHandler()
-    taskStorage[index].checked = !taskStorage[index].checked
+    // if(index>=0){
+        taskStorage[index].checked = !taskStorage[index].checked
+    // }
     localStorage.setItem('taskListStorage', JSON.stringify(taskStorage));
     taskInput.value = "";
     taskInput.focus();
@@ -30,7 +32,6 @@ const taskCompleteHandler = (index) => {
 const taskItemGenerator = (index) => {
     const taskItem = document.createElement("li");
     taskItem.classList.add('task__item');
-    // taskItem.classList.add('task__remove');
     taskItem.addEventListener("click", () => taskCompleteHandler(index));
     return taskItem;
 }
@@ -53,23 +54,25 @@ const setStorage = () => {
     taskList.innerHTML = "";
     const taskStorage = taskStorageHandler()
 
-    taskStorage.forEach((element, index) => {
-        const taskItem = taskItemGenerator(index);
-        const taskText = taskTextGenerator();
-        taskItem.appendChild(taskText);
-        taskList.appendChild(taskItem);
-        
-        taskText.textContent = element.label;
-        if(element.checked){
-            const taskComplete = taskCompleteGenerator(index);
-            taskItem.appendChild(taskComplete);
-            taskText.classList.add('task--complete')
-        }
-    });
+    if(taskStorage.length > 0 ){
+        taskStorage.forEach((element, index) => {
+            const taskItem = taskItemGenerator(index);
+            const taskText = taskTextGenerator();
+            taskItem.appendChild(taskText);
+            taskList.appendChild(taskItem);
+    
+            taskText.textContent = element.label;
+            if (element.checked) {
+                const taskComplete = taskCompleteGenerator(index);
+                taskItem.appendChild(taskComplete);
+                taskText.classList.add('task--complete')
+            }
+        });
+    }
 }
 
 
-const addToList = (event)=>{
+const addToList = (event) => {
     event.preventDefault();
     if (!!taskInput.value) {
 
@@ -78,10 +81,10 @@ const addToList = (event)=>{
 
         taskStorage.push({ label: taskInput.value, checked: false })
         localStorage.setItem('taskListStorage', JSON.stringify(taskStorage));
-        
+
         taskInput.value = "";
         taskInput.focus();
-        
+
         setStorage();
     }
 }

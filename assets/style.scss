@@ -75,6 +75,7 @@
         position: relative;
         overflow: hidden;
         cursor: pointer;
+        // cursor: url('./images/tap.png'), auto;
         &:last-child{
             border: none;
         }
@@ -95,6 +96,7 @@
         height: 1.5rem;
         object-fit: cover;
         cursor: pointer;
+        // cursor: url('./images/tap-delete.png'), auto;
         position: absolute;
         transition-duration: 0.2s;
         transition-timing-function: ease-in-out;
